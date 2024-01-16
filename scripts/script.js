@@ -40,7 +40,7 @@ const bullet_soundfsx = new Sprite(
   55,
   1,
   60,
-  0.07
+  0.06
 );
 bullet_soundfsx.setAnimation("soundsfx");
 
@@ -62,7 +62,7 @@ function animation() {
       setTimeout(() => {
         bullet_sfx = false;
         bullet_soundfsx.setAnimation("soundsfx");
-      }, 360);
+      }, 320);
     }
     if (bullet_flash) {
       bullet_flash_sprite.draw();
