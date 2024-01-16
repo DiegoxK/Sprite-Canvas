@@ -15,20 +15,20 @@ const simon = new Sprite(
   8
 );
 
-function animation() {
+const bullet = function animation() {
   context.clearRect(0, 0, width, height);
   simon.draw();
+
+  if (simon.animation === "shoot") {
+    console.log("shooting");
+  }
+
   requestAnimationFrame(animation);
-}
+};
 
 animation();
 
 canvas.addEventListener("click", () => {
+  if (simon.animation === "shoot") return;
   simon.setAnimation("shoot", 10);
-
-  console.log(simon.secondsToUpdate * simon.fps * 10);
-
-  setTimeout(() => {
-    simon.setAnimation("idle", 8);
-  }, 10000);
 });

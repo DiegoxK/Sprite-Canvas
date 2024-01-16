@@ -2,7 +2,7 @@ export default class Sprite {
   frameIndex = 0;
   count = 0;
   spriteSheet = new Image();
-  animation = "idle";
+  animation = "default";
 
   constructor(
     ctx,
@@ -29,8 +29,10 @@ export default class Sprite {
   }
 
   draw() {
+    const current_animation = this.animations[this.animation];
+
     this.ctx.imageSmoothingEnabled = false;
-    this.spriteSheet.src = this.animations[this.animation];
+    this.spriteSheet.src = current_animation.src;
 
     this.ctx.drawImage(
       this.spriteSheet,
@@ -46,13 +48,24 @@ export default class Sprite {
 
     this.count++;
 
-    if (this.count > this.secondsToUpdate * this.fps) {
-      this.frameIndex++;
-      this.count = 0;
-    }
+    if (current_animation.loop === true) {
+      if (this.count > this.secondsToUpdate * this.fps) {
+        this.frameIndex++;
+        this.count = 0;
+      }
 
-    if (this.frameIndex >= this.frames) {
-      this.frameIndex = 0;
+      if (this.frameIndex >= this.frames) {
+        this.frameIndex = 0;
+      }
+    } else {
+      if (this.count > this.secondsToUpdate * this.fps) {
+        this.frameIndex++;
+        this.count = 0;
+      }
+
+      if (this.frameIndex >= this.frames) {
+        this.setAnimation("default", 8);
+      }
     }
   }
 
