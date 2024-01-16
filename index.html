@@ -3,21 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Parallax Effect</title>
+    <title>Canvas sprites</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="content">
       <div class="layer background">
-        <img id="bg1" src="/background.png" class="parallax" />
-        <img id="bg2" src="/background.png" class="parallax" />
-        <img id="bg3" src="/background.png" class="parallax" />
+        <img id="bg1" src="/assets/background.png" class="parallax" />
+        <img id="bg2" src="/assets/background.png" class="parallax" />
+        <img id="bg3" src="/assets/background.png" class="parallax" />
       </div>
       <div class="layer foreground">
-        <img src="/foreground.png" class="foreground" />
+        <img src="/assets/foreground.png" class="foreground" />
       </div>
       <canvas class="layer" id="canvas"></canvas>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="/scripts/script.js"></script>
   </body>
 </html>

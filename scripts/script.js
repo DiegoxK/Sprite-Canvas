@@ -1,13 +1,10 @@
-const canvas = document.getElementById("canvas");
-const context = canvas.getContext("2d");
-const width = (canvas.width = 500);
-const height = (canvas.height = 500);
+import { context, width, height } from "./canvas.js";
 
-const frameWidth = 92;
-const frameHeight = 54;
+const frameWidth = 100;
+const frameHeight = 70;
 
 const xPos = 50;
-const yPos = 80;
+const yPos = 57;
 const scale = 1;
 const fps = 60;
 const secondsToUpdate = 0.18 * fps;
@@ -16,7 +13,7 @@ let frameIndex = 0;
 let count = 0;
 
 const spriteSheet = new Image();
-spriteSheet.src = "Sprite-Sheet.png";
+spriteSheet.src = "/assets/sprites/simon/idle.png";
 
 function animate() {
   context.imageSmoothingEnabled = false;
