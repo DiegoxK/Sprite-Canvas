@@ -1,0 +1,53 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-size: 1200px;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1d1d1d;
+}
+
+.content {
+  border: #b2b2b2 solid 5px;
+  position: relative;
+  width: 1133px;
+  height: 230px;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+}
+
+.background {
+  display: flex;
+  animation: background-shift 300s linear infinite forwards;
+}
+
+.background img {
+  width: var(--bg-size);
+}
+
+@keyframes background-shift {
+  to {
+    transform: translateX(calc(-1 * var(--bg-size)));
+  }
+}
+
+.foreground {
+  bottom: -4px;
+}
+
+#canvas {
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
