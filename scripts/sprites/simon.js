@@ -24,6 +24,18 @@ export const bullet = {
     loop: false,
     static: true,
   },
+  flash: {
+    src: "/assets/sprites/simon/flash.png",
+    frames: 4,
+    loop: false,
+    static: true,
+  },
+  soundsfx: {
+    src: "/assets/sprites/simon/soundsfx.png",
+    frames: 5,
+    loop: false,
+    static: true,
+  },
 };
 
 export default animations;
