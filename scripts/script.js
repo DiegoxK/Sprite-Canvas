@@ -15,7 +15,7 @@ const simon = new Sprite(
   8
 );
 
-const bullet = function animation() {
+function animation() {
   context.clearRect(0, 0, width, height);
   simon.draw();
 
@@ -24,7 +24,7 @@ const bullet = function animation() {
   }
 
   requestAnimationFrame(animation);
-};
+}
 
 animation();
 

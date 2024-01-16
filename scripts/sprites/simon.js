@@ -16,7 +16,7 @@ const animations = {
   },
 };
 
-const props = {
+export const props = {
   bullet: {
     src: "/assets/sprites/simon/bullet.png",
     frames: 1,
