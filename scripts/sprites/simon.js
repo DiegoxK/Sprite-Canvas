@@ -6,8 +6,9 @@ const animations = {
   },
   pose: {
     src: "/assets/sprites/simon/pose.png",
-    frames: 8,
-    loop: true,
+    frames: 7,
+    loop: false,
+    fadeout: true,
   },
   shoot: {
     src: "/assets/sprites/simon/shoot.png",
@@ -16,11 +17,12 @@ const animations = {
   },
 };
 
-export const props = {
-  bullet: {
+export const bullet = {
+  default: {
     src: "/assets/sprites/simon/bullet.png",
-    frames: 1,
+    frames: 9,
     loop: false,
+    static: true,
   },
 };
 

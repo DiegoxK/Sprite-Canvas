@@ -13,8 +13,7 @@ export default class Sprite {
     height,
     scale = 1,
     fps = 60,
-    secondsToUpdate = 1,
-    frames
+    secondsToUpdate = 1
   ) {
     this.ctx = ctx;
     this.animations = animations;
@@ -25,14 +24,18 @@ export default class Sprite {
     this.scale = scale;
     this.fps = fps;
     this.secondsToUpdate = secondsToUpdate;
-    this.frames = frames;
   }
 
   draw() {
     const current_animation = this.animations[this.animation];
 
+    this.frames = current_animation.frames;
     this.ctx.imageSmoothingEnabled = false;
     this.spriteSheet.src = current_animation.src;
+
+    // if (this.frameIndex + 1 >= this.frames && current_animation.fadeout) {
+    //   this.ctx.globalAlpha -= 0.1;
+    // }
 
     this.ctx.drawImage(
       this.spriteSheet,
@@ -48,22 +51,20 @@ export default class Sprite {
 
     this.count++;
 
-    if (current_animation.loop === true) {
-      if (this.count > this.secondsToUpdate * this.fps) {
-        this.frameIndex++;
-        this.count = 0;
-      }
+    if (this.count > this.secondsToUpdate * this.fps) {
+      this.frameIndex++;
+      this.count = 0;
+    }
 
-      if (this.frameIndex >= this.frames) {
+    if (this.frameIndex >= this.frames) {
+      if (current_animation.loop === true) {
         this.frameIndex = 0;
-      }
-    } else {
-      if (this.count > this.secondsToUpdate * this.fps) {
-        this.frameIndex++;
-        this.count = 0;
-      }
-
-      if (this.frameIndex >= this.frames) {
+      } else if (current_animation.static === true) {
+        this.frameIndex = this.frames - 1;
+      } else if (current_animation.fadeout) {
+        this.frameIndex = this.frames - 1;
+        // this.ctx.globalAlpha = 1;
+      } else {
         this.setAnimation("default", 8);
       }
     }
@@ -73,5 +74,10 @@ export default class Sprite {
     this.frameIndex = 0;
     this.animation = animation;
     this.frames = frames;
+  }
+
+  setPosition(x, y) {
+    this.x = x;
+    this.y = y;
   }
 }
