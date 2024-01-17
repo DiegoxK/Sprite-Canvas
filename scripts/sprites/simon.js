@@ -1,3 +1,6 @@
+import Sprite from "../sprite_class.js";
+import { context } from "../canvas.js";
+
 const animations = {
   default: {
     src: "/assets/sprites/simon/idle.png",
@@ -17,7 +20,7 @@ const animations = {
   },
 };
 
-export const bullet = {
+const bullet = {
   default: {
     src: "/assets/sprites/simon/bullet.png",
     frames: 9,
@@ -30,7 +33,7 @@ export const bullet = {
     loop: false,
     static: true,
   },
-  soundsfx: {
+  soundwave: {
     src: "/assets/sprites/simon/soundsfx.png",
     frames: 5,
     loop: false,
@@ -38,4 +41,44 @@ export const bullet = {
   },
 };
 
-export default animations;
+const simon = new Sprite(context, animations, 50, 57, 100, 70, 1, 60, 0.18);
+
+export const bullet_sprite = new Sprite(
+  context,
+  bullet,
+  160,
+  78,
+  25,
+  55,
+  1,
+  60,
+  0.18
+);
+
+export const bullet_flash_sprite = new Sprite(
+  context,
+  bullet,
+  135,
+  78,
+  25,
+  55,
+  1,
+  60,
+  0.08
+);
+bullet_flash_sprite.setAnimation("flash");
+
+export const bullet_wave_sprite = new Sprite(
+  context,
+  bullet,
+  125,
+  78,
+  25,
+  55,
+  1,
+  60,
+  0.06
+);
+bullet_wave_sprite.setAnimation("soundwave");
+
+export default simon;

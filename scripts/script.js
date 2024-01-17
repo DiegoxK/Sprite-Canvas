@@ -1,51 +1,21 @@
 import { canvas, context, width, height } from "./canvas.js";
-import Sprite from "./sprite.js";
-import simon_animations, { bullet } from "./sprites/simon.js";
+
+import simon, {
+  bullet_sprite,
+  bullet_flash_sprite,
+  bullet_wave_sprite,
+} from "./sprites/simon.js";
 
 let hasShot = false;
 let bullet_flash = false;
-let bullet_sfx = false;
+let bullet_wave = false;
 
-const simon = new Sprite(
-  context,
-  simon_animations,
-  50,
-  57,
-  100,
-  70,
-  1,
-  60,
-  0.18
-);
-
-const bullet_sprite = new Sprite(context, bullet, 160, 78, 25, 55, 1, 60, 0.18);
-const bullet_flash_sprite = new Sprite(
-  context,
-  bullet,
-  135,
-  78,
-  25,
-  55,
-  1,
-  60,
-  0.08
-);
-bullet_flash_sprite.setAnimation("flash");
-const bullet_soundfsx = new Sprite(
-  context,
-  bullet,
-  125,
-  78,
-  25,
-  55,
-  1,
-  60,
-  0.06
-);
-bullet_soundfsx.setAnimation("soundsfx");
+const destroyed_slug = new Image();
+destroyed_slug.src = "/assets/sprites/metal_slug/destroyed.png";
 
 function animation() {
   context.clearRect(0, 0, width, height);
+
   simon.draw();
 
   if (hasShot) {
@@ -57,11 +27,11 @@ function animation() {
       bullet_sprite.setPosition(140, 78);
       simon.setAnimation("pose");
     }
-    if (bullet_sfx) {
-      bullet_soundfsx.draw();
+    if (bullet_wave) {
+      bullet_wave_sprite.draw();
       setTimeout(() => {
-        bullet_sfx = false;
-        bullet_soundfsx.setAnimation("soundsfx");
+        bullet_wave = false;
+        bullet_wave_sprite.setAnimation("soundwave");
       }, 320);
     }
     if (bullet_flash) {
@@ -79,10 +49,12 @@ function animation() {
 animation();
 
 canvas.addEventListener("click", () => {
-  simon.setAnimation("shoot");
-  setTimeout(() => {
-    hasShot = true;
-    bullet_flash = true;
-    bullet_sfx = true;
-  }, 700);
+  if (!hasShot) {
+    simon.setAnimation("shoot");
+    setTimeout(() => {
+      hasShot = true;
+      bullet_flash = true;
+      bullet_wave = true;
+    }, 700);
+  }
 });
