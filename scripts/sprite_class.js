@@ -1,6 +1,10 @@
 export default class Sprite {
+  fps = 60;
+  reseted = false;
   frameIndex = 0;
   count = 0;
+  fadeout_counter = 0;
+  fadein_counter = 0;
   spriteSheet = new Image();
   animation = "default";
 
@@ -12,7 +16,7 @@ export default class Sprite {
     width,
     height,
     scale = 1,
-    fps = 60,
+
     secondsToUpdate = 1
   ) {
     this.ctx = ctx;
@@ -22,7 +26,7 @@ export default class Sprite {
     this.width = width;
     this.height = height;
     this.scale = scale;
-    this.fps = fps;
+
     this.secondsToUpdate = secondsToUpdate;
   }
 
@@ -33,9 +37,29 @@ export default class Sprite {
     this.ctx.imageSmoothingEnabled = false;
     this.spriteSheet.src = current_animation.src;
 
-    // if (this.frameIndex + 1 >= this.frames && current_animation.fadeout) {
-    //   this.ctx.globalAlpha -= 0.1;
-    // }
+    if (this.reseted) {
+      this.ctx.globalAlpha += 0.01;
+
+      if (this.ctx.globalAlpha >= 1) {
+        this.reseted = false;
+      }
+    }
+
+    if (this.frameIndex + 1 >= this.frames && current_animation.fadeout) {
+      if (this.fadeout_counter > 300) {
+        this.ctx.globalAlpha -= 0.01;
+      }
+
+      if (this.fadeout_counter < 500) {
+        this.fadeout_counter += 1;
+      }
+
+      if (this.fadeout_counter === 500) {
+        this.setAnimation("default", 8);
+        this.fadeout_counter = 0;
+        this.reseted = true;
+      }
+    }
 
     this.ctx.drawImage(
       this.spriteSheet,
@@ -61,19 +85,15 @@ export default class Sprite {
         this.frameIndex = 0;
       } else if (current_animation.static === true) {
         this.frameIndex = this.frames - 1;
-      } else if (current_animation.fadeout) {
-        this.frameIndex = this.frames - 1;
-        // this.ctx.globalAlpha = 1;
       } else {
         this.setAnimation("default", 8);
       }
     }
   }
 
-  setAnimation(animation, frames) {
+  setAnimation(animation) {
     this.frameIndex = 0;
     this.animation = animation;
-    this.frames = frames;
   }
 
   setPosition(x, y) {

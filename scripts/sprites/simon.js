@@ -11,6 +11,7 @@ const animations = {
     src: "/assets/sprites/simon/pose.png",
     frames: 7,
     loop: false,
+    static: true,
     fadeout: true,
   },
   shoot: {
@@ -41,7 +42,7 @@ const bullet = {
   },
 };
 
-const simon = new Sprite(context, animations, 50, 57, 100, 70, 1, 60, 0.18);
+const simon = new Sprite(context, animations, 50, 57, 100, 70, 1, 0.18);
 
 export const bullet_sprite = new Sprite(
   context,
@@ -51,7 +52,6 @@ export const bullet_sprite = new Sprite(
   25,
   55,
   1,
-  60,
   0.18
 );
 
@@ -63,7 +63,6 @@ export const bullet_flash_sprite = new Sprite(
   25,
   55,
   1,
-  60,
   0.08
 );
 bullet_flash_sprite.setAnimation("flash");
@@ -76,7 +75,6 @@ export const bullet_wave_sprite = new Sprite(
   25,
   55,
   1,
-  60,
   0.06
 );
 bullet_wave_sprite.setAnimation("soundwave");
