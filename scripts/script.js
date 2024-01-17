@@ -19,6 +19,8 @@ function animation() {
   simon.draw();
   nop_sprite.draw();
 
+  context.drawImage(destroyed_slug, 11, 226, 71, 52, 400, 160, 71, 50);
+
   if (explosion) {
     explosion_sprite.draw();
     setTimeout(() => {
