@@ -52,7 +52,7 @@ export const bullet_sprite = new Sprite(
   25,
   55,
   1,
-  0.18
+  0.1
 );
 
 export const bullet_flash_sprite = new Sprite(

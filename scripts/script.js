@@ -29,7 +29,7 @@ function animation() {
 
   if (hasShot) {
     bullet_sprite.draw();
-    bullet_sprite.setPosition(bullet_sprite.x + 5, bullet_sprite.y);
+    bullet_sprite.setPosition(bullet_sprite.x + 10, bullet_sprite.y);
 
     if (bullet_sprite.x > width - 200) {
       hasShot = false;
@@ -41,7 +41,7 @@ function animation() {
 
       setTimeout(() => {
         simon.setAnimation("pose");
-      }, 500);
+      }, 750);
     }
 
     if (bullet_wave) {
