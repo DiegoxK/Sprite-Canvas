@@ -1,10 +1,10 @@
 import { canvas, context, width, height } from "./canvas.js";
-
 import simon, {
   bullet_sprite,
   bullet_flash_sprite,
   bullet_wave_sprite,
 } from "./sprites/simon.js";
+import nop_sprite from "./sprites/nop.js";
 
 let hasShot = false;
 let bullet_flash = false;
@@ -15,17 +15,19 @@ destroyed_slug.src = "/assets/sprites/metal_slug/destroyed.png";
 
 function animation() {
   context.clearRect(0, 0, width, height);
-
   simon.draw();
+  nop_sprite.draw();
 
   if (hasShot) {
     bullet_sprite.draw();
     bullet_sprite.setPosition(bullet_sprite.x + 5, bullet_sprite.y);
-    if (bullet_sprite.x > width - 150) {
+
+    if (bullet_sprite.x > width - 200) {
       hasShot = false;
       bullet_sprite.setAnimation("default");
       bullet_sprite.setPosition(140, 78);
       simon.setAnimation("pose");
+      nop_sprite.setAnimation("wrecked");
     }
     if (bullet_wave) {
       bullet_wave_sprite.draw();
