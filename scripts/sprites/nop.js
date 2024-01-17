@@ -16,6 +16,24 @@ const animations = {
   },
 };
 
+const explosion = {
+  default: {
+    src: "/assets/sprites/nop-03/explosion.png",
+    frames: 17,
+    loop: false,
+  },
+};
+
 const nop_sprite = new Sprite(context, animations, 920, 57, 90, 98, 1, 0.18);
+export const explosion_sprite = new Sprite(
+  context,
+  explosion,
+  920,
+  57,
+  64,
+  64,
+  1,
+  0.08
+);
 
 export default nop_sprite;

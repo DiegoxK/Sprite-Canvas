@@ -4,11 +4,12 @@ import simon, {
   bullet_flash_sprite,
   bullet_wave_sprite,
 } from "./sprites/simon.js";
-import nop_sprite from "./sprites/nop.js";
+import nop_sprite, { explosion_sprite } from "./sprites/nop.js";
 
 let hasShot = false;
 let bullet_flash = false;
 let bullet_wave = false;
+let explosion = false;
 
 const destroyed_slug = new Image();
 destroyed_slug.src = "/assets/sprites/metal_slug/destroyed.png";
@@ -18,6 +19,14 @@ function animation() {
   simon.draw();
   nop_sprite.draw();
 
+  if (explosion) {
+    explosion_sprite.draw();
+    setTimeout(() => {
+      explosion = false;
+      explosion_sprite.setFrameIndex(0);
+    }, 1050);
+  }
+
   if (hasShot) {
     bullet_sprite.draw();
     bullet_sprite.setPosition(bullet_sprite.x + 5, bullet_sprite.y);
@@ -26,9 +35,15 @@ function animation() {
       hasShot = false;
       bullet_sprite.setAnimation("default");
       bullet_sprite.setPosition(140, 78);
-      simon.setAnimation("pose");
+
+      explosion = true;
       nop_sprite.setAnimation("wrecked");
+
+      setTimeout(() => {
+        simon.setAnimation("pose");
+      }, 500);
     }
+
     if (bullet_wave) {
       bullet_wave_sprite.draw();
       setTimeout(() => {

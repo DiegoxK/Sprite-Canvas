@@ -86,13 +86,17 @@ export default class Sprite {
       } else if (current_animation.static === true) {
         this.frameIndex = this.frames - 1;
       } else {
-        this.setAnimation("default", 8);
+        this.setAnimation("default");
       }
     }
   }
 
+  setFrameIndex(index) {
+    this.frameIndex = index;
+  }
+
   setAnimation(animation) {
-    this.frameIndex = 0;
+    this.setFrameIndex(0);
     this.animation = animation;
   }
 
