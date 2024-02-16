@@ -12,7 +12,7 @@ let bullet_wave = false;
 let explosion = false;
 
 const destroyed_slug = new Image();
-destroyed_slug.src = "/assets/sprites/metal_slug/destroyed.png";
+destroyed_slug.src = "../assets/sprites/metal_slug/destroyed.png";
 
 function animation() {
   context.clearRect(0, 0, width, height);
