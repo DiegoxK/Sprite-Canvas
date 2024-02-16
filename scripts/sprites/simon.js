@@ -3,19 +3,19 @@ import { context } from "../canvas.js";
 
 const animations = {
   default: {
-    src: "../images/sprites/simon/idle.png",
+    src: "images/sprites/simon/idle.png",
     frames: 8,
     loop: true,
   },
   pose: {
-    src: "../images/sprites/simon/pose.png",
+    src: "images/sprites/simon/pose.png",
     frames: 7,
     loop: false,
     static: true,
     fadeout: true,
   },
   shoot: {
-    src: "../images/sprites/simon/shoot.png",
+    src: "images/sprites/simon/shoot.png",
     frames: 10,
     loop: false,
   },
@@ -23,19 +23,19 @@ const animations = {
 
 const bullet = {
   default: {
-    src: "../images/sprites/simon/bullet.png",
+    src: "images/sprites/simon/bullet.png",
     frames: 9,
     loop: false,
     static: true,
   },
   flash: {
-    src: "../images/sprites/simon/flash.png",
+    src: "images/sprites/simon/flash.png",
     frames: 4,
     loop: false,
     static: true,
   },
   soundwave: {
-    src: "../images/sprites/simon/soundsfx.png",
+    src: "images/sprites/simon/soundsfx.png",
     frames: 5,
     loop: false,
     static: true,

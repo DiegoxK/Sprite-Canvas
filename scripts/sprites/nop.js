@@ -3,12 +3,12 @@ import { context } from "../canvas.js";
 
 const animations = {
   default: {
-    src: "../images/sprites/nop-03/nop_idle.png",
+    src: "images/sprites/nop-03/nop_idle.png",
     frames: 2,
     loop: true,
   },
   wrecked: {
-    src: "../images/sprites/nop-03/wrecked.png",
+    src: "images/sprites/nop-03/wrecked.png",
     frames: 4,
     loop: false,
     static: true,
@@ -18,7 +18,7 @@ const animations = {
 
 const explosion = {
   default: {
-    src: "../images/sprites/nop-03/explosion.png",
+    src: "images/sprites/nop-03/explosion.png",
     frames: 17,
     loop: false,
   },
